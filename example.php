@@ -20,7 +20,7 @@ foreach ( $array_expression as $value ) {
 	echo $value ['name'];
 	echo '<br>';
 }
-
+die;
 // query metod
 $q = "ALTER TABLE users MODIFY COLUMN user_id  int(11) NOT NULL AUTO_INCREMENT FIRST";
 $this->querys ( $q );

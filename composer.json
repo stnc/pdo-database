@@ -1,5 +1,5 @@
 {
-    "name": "pdo/mysqldatabase",
+    "name": "DB/MYSQL",
     "description": "A super simple function that returns the full SQL query from your PDO statements",
     "keywords": ["pdo", "mysql","sql"],
     "homepage": "https://github.com/stnc/pdo-database",
