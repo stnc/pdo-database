@@ -18,5 +18,5 @@
         "psr-4": {
         "DB\\MYSQL\\": "src/DB/MYSQL"
         }
-    },
+    }
 }
