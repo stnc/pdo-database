@@ -1,6 +1,6 @@
 <?php
 
-namespace DB\MYSQL;
+namespace Db\Mysql;
 
 /**
  * A super simple function that returns the full SQL query from your PDO statements
@@ -14,7 +14,7 @@ namespace DB\MYSQL;
  */
 use \PDO;
 //implements \DBInterface
-class MYSQL extends PDO  {
+class Mysql extends PDO  {
 	public static $db = false;
 	function __construct() {
 		if (self::$db === false) {
