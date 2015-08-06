@@ -1,7 +1,5 @@
 <?php
-include ("Config.php");
-include ("DBInterface.php");
-include ("DB.php");
+
 
 $db = new DB\MYSQL ();
 
