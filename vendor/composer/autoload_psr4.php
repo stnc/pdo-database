@@ -6,5 +6,5 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
-    'DB\\MYSQL\\' => array($baseDir . '/src/DB/MYSQL'),
+    'DB\\' => array($baseDir . '/src/DB'),
 );
