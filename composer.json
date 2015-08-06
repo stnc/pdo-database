@@ -13,10 +13,10 @@
     ],
     "minimum-stability": "dev",
     "require": {},
+
     "autoload": {
         "psr-4": {
-            "DB\\MYSQL\\": "src/DB/MYSQL"
+        "DB\\MYSQL\\": "src/DB/MYSQL"
         }
     },
-
 }
