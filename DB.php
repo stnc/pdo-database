@@ -3,13 +3,13 @@
 namespace DB;
 
 /**
- * SAVEAS FRAMEWORK
- *
+ * A super simple function that returns the full SQL query from your PDO statements
+ * a PDO database service provider for mysql
  * Copyright (c) 2015
- *
+ * 
  * @author Selman TUNÇ <selmantunc@gmail.com>
- * @link http://github.com/stnc
- * @version 2.0.0.1
+ * @link https://github.com/stnc/pdo-database
+ * @version 1.0.0.0
  * @license http://www.opensource.org/licenses/mit-license.php The MIT License
  */
 use \PDO;
