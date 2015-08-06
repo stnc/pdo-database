@@ -13,8 +13,8 @@ namespace DB;
  * @license http://www.opensource.org/licenses/mit-license.php The MIT License
  */
 use \PDO;
-
-class MYSQL extends PDO implements \DBInterface {
+//implements \DBInterface
+class MYSQL extends PDO  {
 	public static $db = false;
 	function __construct() {
 		if (self::$db === false) {
