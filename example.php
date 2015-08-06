@@ -1,7 +1,10 @@
 <?php
+/*
+$example = new Ozziest\Example\Example;
+echo $example->title('bu örnek bir başlıktır');
+*/
 
-
-$db = new DB\MYSQL ();
+$db = new DB\MYSQL();
 
 // multiple rows
 $q = "SELECT * FROM users";
