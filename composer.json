@@ -7,12 +7,16 @@
     "authors": [
         {
             "name": "SELMAN TUNÇ",
-            "role": "Developer"
+            "role": "Developer",
+             "email": "selmantunc@yandex.com"
         }
     ],
- 
-    "require": {
-        "DB/MYSQL": "~2.0.0"
-    }
+    "minimum-stability": "dev",
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "DB\\MYSQL\\": "src/DB/MYSQL"
+        }
+    },
 
 }
