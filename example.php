@@ -1,8 +1,5 @@
 <?php
-/*
-$example = new Ozziest\Example\Example;
-echo $example->title('bu örnek bir başlıktır');
-*/
+
 
 $db = new DB\MYSQL();
 
