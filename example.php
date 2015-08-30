@@ -2,7 +2,12 @@
 require_once 'vendor/autoload.php';
 /*use \DB\MYSQL as dbs;
 $db = new dbs\Mysql();*/
-$db = new \DB\MYSQL\Mysql();
+  define('DB_TYPE', 'mysql');
+  define('DB_HOST', 'localhost');
+  define('DB_NAME', 'alem');
+  define('DB_USER', 'root');
+  define('DB_PASS', '');
+$db = new \Db\Mysql\Mysql();
 $tableName = 'users';
 // multiple rows
 $q = "SELECT * FROM ".$tableName;
