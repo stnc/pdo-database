@@ -1,7 +1,7 @@
 <?php
 
 
-$db = new DB\MYSQL();
+$db = new Db\Mysql();
 
 // multiple rows
 $q = "SELECT * FROM users";
