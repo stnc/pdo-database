@@ -1,10 +1,11 @@
 <?php
-
-
-$db = new Db\Mysql();
-
+require_once 'vendor/autoload.php';
+/*use \DB\MYSQL as dbs;
+$db = new dbs\Mysql();*/
+$db = new \DB\MYSQL\Mysql();
+$tableName = 'users';
 // multiple rows
-$q = "SELECT * FROM users";
+$q = "SELECT * FROM ".$tableName;
 $array_expression = $db->rows ( $q );
 foreach ( $array_expression as $value ) {
 	echo  $value ['name'];
@@ -12,7 +13,7 @@ foreach ( $array_expression as $value ) {
 }
 
 // single row
-$q = "SELECT * FROM users";
+$q = "SELECT * FROM ".$tableName;
 $array_expression = $db->fetch ( $q );
 foreach ( $array_expression as $value ) {
 	echo $value ['name'];
@@ -30,7 +31,7 @@ $data = array (
 		'status' => 1,
 		'age' => 25 
 );
-$tableName = 'users';
+
 $this->insert ( $tableName, $data );
 
 // update metod
@@ -46,7 +47,7 @@ $where = array (
 		'user_id' => 1 
 );
 
-$this->update ( $tableName, $data, $where );
+$this-> update ( $tableName, $data, $where );
 // delete data
 
 $where = array (
