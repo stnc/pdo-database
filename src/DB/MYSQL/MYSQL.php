@@ -6,7 +6,7 @@ namespace Db\Mysql;
  * A super simple function that returns the full SQL query from your PDO statements
  * a PDO database service provider for mysql
  * Copyright (c) 2015
- * 
+ *
  * @author Selman TUNÇ <selmantunc@gmail.com>
  * @link https://github.com/stnc/pdo-database
  * @version 1.0.0.0
@@ -15,9 +15,9 @@ namespace Db\Mysql;
 use \PDO;
 //implements \DBInterface
 class Mysql extends PDO  {
-	public static $db = false;
+	public static $dbMysql = false;
 	function __construct() {
-		if (self::$db === false) {
+		if (self::$dbMysql === false) {
 			$this->connect ();
 		}
 	}
@@ -27,10 +27,17 @@ class Mysql extends PDO  {
 	private function connect() {
 		$dsn = DB_TYPE . ":dbname=" . DB_NAME . ";host=" . DB_HOST;
 		try {
-			self::$db = new PDO ( $dsn, DB_USER, DB_PASS, array (
-					PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES \'UTF8\'' 
+			self::$dbMysql = new PDO ( $dsn, DB_USER, DB_PASS, array (
+					PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES \'UTF8\'',
+			    PDO::MYSQL_ATTR_USE_BUFFERED_QUERY => false,
 			) );
-			self::$db->setAttribute ( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
+			
+			self::$dbMysql->setAttribute(PDO::MYSQL_ATTR_INIT_COMMAND, 'SET NAMES utf8'); // new -> stnc
+			self::$dbMysql->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
+			self::$dbMysql->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+			
+			self::$dbMysql->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
+
 		} catch ( PDOException $e ) {
 			
 			// your log handler
@@ -45,10 +52,10 @@ class Mysql extends PDO  {
 	 *        	sql query
 	 * @param array $array
 	 *        	named params
-	 * @param object $fetchMode        	
+	 * @param object $fetchMode
 	 * @return array returns an array of records
 	 * @example $q = " SELECT * FROM users";
-	 *          $db->rows($q);
+	 *          $dbMysql->rows($q);
 	 */
 	public function rows($sql, $array = array(), $fetchMode = 'array') {
 		if ($fetchMode == 'array') {
@@ -57,7 +64,7 @@ class Mysql extends PDO  {
 			$fetchMode = PDO::FETCH_OBJ;
 		}
 		
-		$stmt = self::$db->prepare ( $sql );
+		$stmt = self::$dbMysql->prepare ( $sql );
 		foreach ( $array as $key => $value ) {
 			if (is_int ( $value )) {
 				$stmt->bindValue ( "$key", $value, PDO::PARAM_INT );
@@ -78,12 +85,12 @@ class Mysql extends PDO  {
 	 *        	sql query
 	 * @param array $array
 	 *        	named params
-	 * @param object $fetchMode        	
+	 * @param object $fetchMode
 	 * @return array returns an array of records
 	 * @return array returns an array of records
 	 * @example $q = " SELECT * FROM users";
-	 *          $db->fetch($q);
-	 *         
+	 *          $dbMysql->fetch($q);
+	 *
 	 */
 	public function fetch($sql, $fetchMode = 'array') {
 		if ($fetchMode == 'array') {
@@ -92,7 +99,7 @@ class Mysql extends PDO  {
 			$fetchMode = PDO::FETCH_OBJ;
 		}
 		
-		$stmt = self::$db->prepare ( $sql );
+		$stmt = self::$dbMysql->prepare ( $sql );
 		
 		$stmt->execute ();
 		
@@ -104,12 +111,12 @@ class Mysql extends PDO  {
 	 *
 	 * @param string $sql
 	 *        	query name
-	 *        	
+	 *
 	 *        	$q = "SHOW FULL TABLES";
 	 *        	$this->querys($q)
 	 */
 	public function querys($sql) {
-		$stmt = self::$db->prepare ( $sql );
+		$stmt = self::$dbMysql->prepare ( $sql );
 		return $stmt->execute ();
 	}
 	
@@ -126,7 +133,7 @@ class Mysql extends PDO  {
 	 *          'status' => 1,
 	 *          'age' =>25 ,
 	 *          );
-	 *         
+	 *
 	 *          $this->insert('users',$data );
 	 */
 	public function insert($table, $data) {
@@ -135,13 +142,25 @@ class Mysql extends PDO  {
 		$fieldNames = implode ( ',', array_keys ( $data ) );
 		$fieldValues = ':' . implode ( ', :', array_keys ( $data ) );
 		
-		$stmt = self::$db->prepare ( "INSERT INTO $table ($fieldNames) VALUES ($fieldValues)" );
+		$stmt = self::$dbMysql->prepare ( "INSERT INTO $table ($fieldNames) VALUES ($fieldValues)" );
 		
 		foreach ( $data as $key => $value ) {
 			$stmt->bindValue ( ":$key", $value );
 		}
 		
 		$stmt->execute ();
+		
+		
+	
+		/*    $this->beginTransaction();
+		
+		    $status = $this->exec($statement);
+		    if ($status) {
+		        $this->commit();
+		    } else {
+		        $this->rollback();
+		    }
+		*/
 	}
 	
 	/**
@@ -160,12 +179,12 @@ class Mysql extends PDO  {
 	 *          'status' => 1,
 	 *          'age' =>25 ,
 	 *          );
-	 *         
-	 *         
+	 *
+	 *
 	 *          $where = array(
 	 *          'user_id' => 1
 	 *          );
-	 *         
+	 *
 	 *          $this-> update('users', $data, $where);
 	 */
 	public function update($table, $data, $where) {
@@ -191,7 +210,7 @@ class Mysql extends PDO  {
 		$whereDetails = ltrim ( $whereDetails, ' AND ' );
 		$s = "UPDATE $table SET $fieldDetails WHERE $whereDetails";
 		
-		$stmt = self::$db->prepare ( $s );
+		$stmt = self::$dbMysql->prepare ( $s );
 		
 		foreach ( $data as $key => $value ) {
 			$stmt->bindValue ( ":$key", $value );
@@ -216,11 +235,11 @@ class Mysql extends PDO  {
 	 *        	array of columns and values
 	 * @param integer $limit
 	 *        	limit number of records
-	 *        	
+	 *
 	 * @example $where = array(
 	 *          'user_id' => 1
 	 *          );
-	 *          return $db->delete("users", $where);
+	 *          return $dbMysql->delete("users", $where);
 	 */
 	public function delete($table, $where, $limit = 1) {
 		ksort ( $where );
@@ -243,7 +262,7 @@ class Mysql extends PDO  {
 			$uselimit = "LIMIT $limit";
 		}
 		$sql = "DELETE FROM $table WHERE $whereDetails $uselimit";
-		$stmt = self::$db->prepare ( $sql );
+		$stmt = self::$dbMysql->prepare ( $sql );
 		
 		foreach ( $where as $key => $value ) {
 			$stmt->bindValue ( ":$key", $value );
@@ -256,7 +275,7 @@ class Mysql extends PDO  {
 	 * son eklenenin id numarası
 	 */
 	function lastID() {
-		return $this->lastInsertId ();
+		return self::$dbMysql->lastInsertId ();
 	}
 	
 	/**
@@ -286,6 +305,6 @@ class Mysql extends PDO  {
 	 *        	table name
 	 */
 	public function truncate($table) {
-		return $this->exec ( "TRUNCATE TABLE $table" );
+		return self::$dbMysql->exec ( "TRUNCATE TABLE $table" );
 	}
 }
