@@ -38,11 +38,11 @@ foreach ( $array_expression as $value ) {
 	echo '<br>';
 }
 ```
-## 4.  query row
+## 4.  Query 
 ```php
 $q = "ALTER TABLE users MODIFY COLUMN user_id  int(11) NOT NULL AUTO_INCREMENT FIRST";
 $this->querys ( $q );
-
+```
 ## 5. insert data
 ```php
 $data = array (
