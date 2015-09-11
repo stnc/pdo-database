@@ -4,7 +4,7 @@ A super simple function that returns the full SQL query from your PDO statements
 a PDO database service provider for mysql
 
 
-## 1. Installing
+## 1. Installing-Connections 
 ```php
 require_once 'vendor/autoload.php';
 /*use \DB\MYSQL as dbs;
@@ -18,7 +18,7 @@ $db = new dbs\Mysql();*/
 $db = new db\mysql\mysql();
 $tableName = 'users';
 ```
-## 3. Select
+## 3. Select multiple rows
 ```php
 $q = "SELECT * FROM ".$tableName;
 $array_expression = $db->rows ( $q );
