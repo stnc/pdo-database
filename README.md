@@ -5,6 +5,7 @@ a PDO database service provider for mysql
 
 
 ## 1. Installing
+```php
 require_once 'vendor/autoload.php';
 /*use \DB\MYSQL as dbs;
 $db = new dbs\Mysql();*/
@@ -16,28 +17,32 @@ $db = new dbs\Mysql();*/
 ## 2. Connections
 $db = new db\mysql\mysql();
 $tableName = 'users';
-// multiple rows
+```
 ## 3. Select
+```php
 $q = "SELECT * FROM ".$tableName;
 $array_expression = $db->rows ( $q );
 foreach ( $array_expression as $value ) {
 	echo  $value ['name'];
 	echo '<br>';
 }
+```
 ## 3. Select single row
+```php
 $q = "SELECT * FROM ".$tableName;
 $array_expression = $db->fetch ( $q );
 foreach ( $array_expression as $value ) {
 	echo $value ['name'];
 	echo '<br>';
 }
-
+```
 ## 4. Select query row
+```php
 $q = "ALTER TABLE users MODIFY COLUMN user_id  int(11) NOT NULL AUTO_INCREMENT FIRST";
 $this->querys ( $q );
 
 ## 5. insert data
-
+```php
 $data = array (
 		'name' => "john",
 		'lastname' => "carter",
@@ -47,8 +52,9 @@ $data = array (
 
 
 $this->insert ( $tableName, $data );
-
+```
 ## 6. update metod
+```php
 $data = array (
 		'name' => "john",
 		'lastname' => "carter",
@@ -59,13 +65,17 @@ $where = array (
 		'user_id' => 1 
 );
 $this-> update ( $tableName, $data, $where );
-// delete data
+```
+## 7. Delete metod
+```php
 $where = array (
 		'user_id' => 1 
 );
+```
 
-## 7. Delete metod
 return $db->delete ( $tableName, $where );
 
 ## 8. last id 
+```php
 $db->lastID();
+```
