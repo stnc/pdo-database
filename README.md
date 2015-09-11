@@ -14,7 +14,9 @@ $db = new dbs\Mysql();*/
   define('DB_NAME', 'alem');
   define('DB_USER', 'root');
   define('DB_PASS', '');
+  ```
 ## 2. Connections
+```php
 $db = new db\mysql\mysql();
 $tableName = 'users';
 ```
@@ -36,7 +38,7 @@ foreach ( $array_expression as $value ) {
 	echo '<br>';
 }
 ```
-## 4. Select query row
+## 4.  query row
 ```php
 $q = "ALTER TABLE users MODIFY COLUMN user_id  int(11) NOT NULL AUTO_INCREMENT FIRST";
 $this->querys ( $q );
