@@ -7,8 +7,8 @@ a PDO database service provider for mysql
 ## 1. Installing-Connections 
 ```php
 require_once 'vendor/autoload.php';
-/*use \DB\MYSQL as dbs;
-$db = new dbs\Mysql();*/
+/*use \stnc\db as dbs;
+$db = new dbs\stncmysql();*/
   define('DB_TYPE', 'mysql');
   define('DB_HOST', 'localhost');
   define('DB_NAME', 'alem');
@@ -17,7 +17,8 @@ $db = new dbs\Mysql();*/
   ```
 ## 2. Connections
 ```php
-$db = new db\mysql\mysql();
+
+   $db = new stnc\db\stncmysql();
 $tableName = 'users';
 ```
 ## 3. Select multiple rows
