@@ -16,7 +16,7 @@
 
     "autoload": {
         "psr-4": {
-        "db\\mysql\\": "src/db/mysql/"
+       "stnc\\db\\" : "src/stnc/db/"
         }
     }
 }

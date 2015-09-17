@@ -8,7 +8,7 @@ $db = new dbs\Mysql();*/
   define('DB_USER', 'root');
   define('DB_PASS', '');
   
-$db = new db\mysql\mysql();
+   $db = new stnc\db\stncmysql();
 $tableName = 'users';
 // multiple rows
 $q = "SELECT * FROM ".$tableName;
