@@ -32,6 +32,7 @@ foreach ( $array_expression as $value ) {
 ```
 ## 3. Select single row
 ```php
+$tableName = 'wp_options';
 $q = "SELECT * FROM ".$tableName;
 $array_expression = $db->fetch ( $q );
 echo $array_expression ['name'];
