@@ -34,10 +34,9 @@ foreach ( $array_expression as $value ) {
 ```php
 $q = "SELECT * FROM ".$tableName;
 $array_expression = $db->fetch ( $q );
-foreach ( $array_expression as $value ) {
-	echo $value ['name'];
-	echo '<br>';
-}
+
+	echo $array_expression ['name'];
+
 ```
 ## 4.  Query 
 ```php
