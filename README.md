@@ -34,8 +34,13 @@ foreach ( $array_expression as $value ) {
 ```php
 $q = "SELECT * FROM ".$tableName;
 $array_expression = $db->fetch ( $q );
+echo $array_expression ['name'];
+//or 
+$q = 'SELECT * FROM '.$tableName.' where option_name="siteurl" ';
+$array_expression = $db->fetch ( $q );
+print_r ($array_expression);
+echo $array_expression ['option_name'];
 
-	echo $array_expression ['name'];
 
 ```
 ## 4.  Query 
