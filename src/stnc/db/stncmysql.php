@@ -55,9 +55,9 @@ class stncmysql extends PDO  {
 	 * @param object $fetchMode
 	 * @return array returns an array of records
 	 * @example $q = " SELECT * FROM users";
-	 *          $dbMysql->rows($q);
+	 *          $dbMysql->fetchAll($q);
 	 */
-	public function rows($sql, $array = array(), $fetchMode = 'array') {
+	public function fetchAll($sql, $array = array(), $fetchMode = 'array') {
 		if ($fetchMode == 'array') {
 			$fetchMode = PDO::FETCH_ASSOC;
 		} else if ($fetchMode == 'object') {
@@ -113,9 +113,9 @@ class stncmysql extends PDO  {
 	 *        	query name
 	 *
 	 *        	$q = "SHOW FULL TABLES";
-	 *        	$this->querys($q)
+	 *        	$this->query($q)
 	 */
-	public function querys($sql) {
+	public function query($sql) {
 		$stmt = self::$dbMysql->prepare ( $sql );
 		return $stmt->execute ();
 	}
