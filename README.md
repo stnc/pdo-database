@@ -47,7 +47,7 @@ echo $array_expression ['option_name'];
 ## 4.  Query 
 ```php
 $q = "ALTER TABLE users MODIFY COLUMN user_id  int(11) NOT NULL AUTO_INCREMENT FIRST";
-$this->querys ( $q );
+$this->query ( $q );
 ```
 ## 5. insert data
 ```php
