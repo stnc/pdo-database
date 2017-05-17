@@ -24,7 +24,7 @@ $tableName = 'users';
 ## 3. Select multiple rows
 ```php
 $q = "SELECT * FROM ".$tableName;
-$array_expression = $db->rows ( $q );
+$array_expression = $db->fetchAll ( $q );
 foreach ( $array_expression as $value ) {
 	echo  $value ['name'];
 	echo '<br>';
