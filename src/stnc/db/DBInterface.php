@@ -15,7 +15,7 @@
 interface DBInterface {
 	
 
-	function rows($sql, $array = array(), $fetchMode = 'array');
+	function fetchAll($sql, $array = array(), $fetchMode = 'array');
 	
 
 	function fetch($sql, $fetchMode = 'array');
