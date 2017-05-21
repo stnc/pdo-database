@@ -41,7 +41,7 @@ foreach ( $array_expression as $value ) {
 	echo '<br>';
 }
 ```
-## 3. Select single row
+## 4. Select single row
 ```php
 $tableName = 'wp_options';//wordpress 
 $q = "SELECT * FROM ".$tableName;
@@ -55,12 +55,12 @@ echo $array_expression ['option_name'];
 
 
 ```
-## 4.  Query 
+## 5.  Query 
 ```php
 $q = "ALTER TABLE users MODIFY COLUMN user_id  int(11) NOT NULL AUTO_INCREMENT FIRST";
 $this->query ( $q );
 ```
-## 5. insert data
+## 6. insert data
 ```php
 $data = array (
 		'name' => "john",
@@ -72,7 +72,7 @@ $data = array (
 
 $this->insert ( $tableName, $data );
 ```
-## 6. update metod
+## 7. update metod
 ```php
 $data = array (
 		'name' => "john",
@@ -85,7 +85,7 @@ $where = array (
 );
 $this-> update ( $tableName, $data, $where );
 ```
-## 7. Delete metod
+## 8. Delete metod
 ```php
 $where = array (
 		'user_id' => 1 
@@ -95,7 +95,7 @@ return $db->delete ( $tableName, $where );
 ```
 
 
-## 8. last id 
+## 9. last id 
 ```php
 $db->lastID();
 ```
