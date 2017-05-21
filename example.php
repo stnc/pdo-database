@@ -1,63 +1,75 @@
 <?php
 require_once 'vendor/autoload.php';
-/*use \DB\MYSQL as dbs;
-$db = new dbs\Mysql();*/
   define('DB_TYPE', 'mysql');
   define('DB_HOST', 'localhost');
-  define('DB_NAME', 'alem');
+  define('DB_NAME', 'zf1app_db');
   define('DB_USER', 'root');
   define('DB_PASS', '');
   
-   $db = new stnc\db\stncmysql();
+
+/* //use 1 
+use stnc\db\MysqlAdapter ;
+$db = new MysqlAdapter();
+*/
+
+/* //use 2
+use stnc\db\MysqlAdapter as dbs;
+$db = new dbs();
+*/
+
+
+//use 3
+$db = new stnc\db\MysqlAdapter();
+
+
 $tableName = 'users';
 // multiple rows
 $q = "SELECT * FROM ".$tableName;
-$array_expression = $db->rows ( $q );
+$array_expression = $db->fetchAll ( $q );
 foreach ( $array_expression as $value ) {
-	echo  $value ['name'];
+	echo  $value ['username'];
 	echo '<br>';
 }
 
 // single row
-$q = "SELECT * FROM ".$tableName;
+$q = "SELECT * FROM ".$tableName ." where id=1";
 $array_expression = $db->fetch ( $q );
-foreach ( $array_expression as $value ) {
-	echo $value ['name'];
-	echo '<br>';
-}
-die;
+//print_r($array_expression);
+
+	echo $value ['username'];
+
+
 // query metod
-$q = "ALTER TABLE users MODIFY COLUMN user_id  int(11) NOT NULL AUTO_INCREMENT FIRST";
-$this->querys ( $q );
+$q = "ALTER TABLE users MODIFY COLUMN id  int(11) NOT NULL AUTO_INCREMENT FIRST";
+ $db->query ( $q );
 
 // insert data
 $data = array (
-		'name' => "john",
-		'lastname' => "carter",
-		'status' => 1,
-		'age' => 25 
+		'first_name' => "john",
+		'last_name' => "carter",
+		'username' => "rob",
+		'password' => "12345",
+
 );
 
-$this->insert ( $tableName, $data );
+ $db->insert ( $tableName, $data );
 
 // update metod
 
 $data = array (
-		'name' => "john",
-		'lastname' => "carter",
-		'status' => 1,
-		'age' => 25 
+		'first_name' => "john",
+		'last_name' => "carter",
 );
 
 $where = array (
-		'user_id' => 1 
+		'id' => 1 
 );
 
-$this-> update ( $tableName, $data, $where );
+ $db-> update ( $tableName, $data, $where );
 // delete data
 
 $where = array (
-		'user_id' => 1 
+		'id' => 5
 );
 return $db->delete ( $tableName, $where );
 
