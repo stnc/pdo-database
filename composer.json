@@ -16,7 +16,6 @@
         "php": ">=5.4.0",
          "ext-pdo": "*"
     },
-
     "autoload": {
         "psr-4": {
 		"stnc\\db\\" : "src"
