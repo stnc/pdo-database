@@ -90,9 +90,10 @@ $this-> update ( $tableName, $data, $where );
 $where = array (
 		'user_id' => 1 
 );
-```
 
 return $db->delete ( $tableName, $where );
+```
+
 
 ## 8. last id 
 ```php
