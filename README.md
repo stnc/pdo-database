@@ -3,7 +3,7 @@ easy ,basic ,simple ORM <br>
 A super simple function that returns the full SQL query from your PDO statements<br>
 a PDO database service provider for mysql
 
-# Composer ile kurulum 
+# Composer install 
 composer require stnc/pdo-database
 
 ## 1. Installing-Connections 
