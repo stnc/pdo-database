@@ -19,7 +19,7 @@
 
     "autoload": {
         "psr-4": {
-       "stnc\\framework\\" : "database"
+       "Stnc\\Framework\\" : "database"
         }
     }
 }
