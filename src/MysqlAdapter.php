@@ -44,6 +44,73 @@ class MysqlAdapter extends PDO implements DBInterface {
 		}
 	}
 	
+	
+	    /**
+		multiple connection 
+     * Static method get
+     *
+     * @param array $group            
+     * @return \lib\database
+     */
+    public static function get($group = false)
+    {
+        
+        // Determining if exists or it's not empty, then use default group defined in config
+        $group = ! $group ? array(
+            'type' => DB_TYPE,
+            'host' => DB_HOST,
+            'name' => DB_NAME,
+            'user' => DB_USER,
+            'pass' => DB_PASS
+        ) : $group;
+        
+        // Group information
+        $type = $group['type'];
+        $host = $group['host'];
+        $name = $group['name'];
+        $user = $group['user'];
+        $pass = $group['pass'];
+        
+        // ID for database based on the group information
+        $id = "$type.$host.$name.$user.$pass";
+        
+        // Checking if the same
+        if (isset(self::$instances[$id])) {
+            return self::$instances[$id];
+        }
+        
+        try {
+            // I've run into problem where
+            // SET NAMES "UTF8" not working on some hostings.
+            // Specifiying charset in DSN fixes the charset problem perfectly!
+            $instance = new Database("$type:host=$host;dbname=$name;charset=UTF8", $user, $pass, array(
+                PDO::MYSQL_ATTR_USE_BUFFERED_QUERY => false
+            ));
+            
+            $instance->setAttribute(PDO::MYSQL_ATTR_INIT_COMMAND, 'SET NAMES utf8'); // new -> stnc
+            $instance->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
+            $instance->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            
+            $instance->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
+            
+            /*
+             * benim eski mvc den
+             * self::$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+             * self::$db->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
+             */
+            
+            // Setting Database into $instances to avoid duplication
+            self::$instances[$id] = $instance;
+            
+            return $instance;
+        } catch (PDOException $e) {
+            // in the event of an error record the error to errorlog.html
+           // Logger::newMessage($e);
+           // logger::customErrorMsg();
+        }
+    }
+
+	
 	/**
 	 * method for multiple rows selecting records from a database
 	 * birden fazla kolon bilgisini gonderir
