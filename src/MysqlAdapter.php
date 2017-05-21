@@ -14,7 +14,7 @@ namespace stnc\db;
  */
 use \PDO;
 //implements \DBInterface
-class MysqlAdapter extends PDO  {
+class MysqlAdapter extends PDO implements DBInterface {
 	public static $dbMysql = false;
 	function __construct() {
 		if (self::$dbMysql === false) {

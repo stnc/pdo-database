@@ -1,13 +1,13 @@
 <?php
-
+namespace stnc\db;
 /**
- * SAVEAS FRAMEWORK
+ * Stnc easy framework 
  *
  * Copyright (c) 2015
  *
  * db interface
  * @author Selman TUNÇ <selmantunc@gmail.com>
- * @copyright Copyright (c) 2015 SAVEAS YAZILIM
+ * @copyright Copyright (c) 2015 STNC software
  * @link http://github.com/stnc
  * @version 2.0.0.1
  * @license http://www.opensource.org/licenses/mit-license.php The MIT License
