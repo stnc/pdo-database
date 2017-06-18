@@ -34,9 +34,14 @@ foreach ( $array_expression as $value ) {
 // single row
 $q = "SELECT * FROM ".$tableName ." where id=1";
 $array_expression = $db->fetch ( $q );
-//print_r($array_expression);
+
 
 	echo $value ['username'];
+
+
+
+//print_r($array_expression);
+
 
 
 // query metod
@@ -51,13 +56,13 @@ $data = array (
 		'password' => "12345",
 
 );
-
+//print_r($data );
  $db->insert ( $tableName, $data );
 
 // update metod
 
 $data = array (
-		'first_name' => "john",
+		'first_name' => "johnx",
 		'last_name' => "carter",
 );
 
@@ -66,13 +71,20 @@ $where = array (
 );
 
  $db-> update ( $tableName, $data, $where );
-// delete data
 
 $where = array (
 		'id' => 5
 );
-return $db->delete ( $tableName, $where );
+$db->delete ( $tableName, $where );
 
 
 //last id 
 $db->lastID();
+
+///NEW MTEOD //Chaining methods where update //orm step 2
+$db->where('id', '=', 1)->update2(['username' =>'selman sedat']);
+
+//orm step 1
+$db->tableName=$tableName;
+$array_expression = $db->where_test ( 'id','=','1' );
+

@@ -16,6 +16,10 @@ use \PDO;
 //implements \DBInterface
 class MysqlAdapter extends PDO implements DBInterface {
 	public static $dbMysql = false;
+	
+	public  $tableName ;
+	private  $where ;
+	
 	function __construct() {
 		if (self::$dbMysql === false) {
 			$this->connect ();
@@ -40,7 +44,7 @@ class MysqlAdapter extends PDO implements DBInterface {
 
 		} catch ( PDOException $e ) {
 			
-			// your log handler
+			//  log handler
 		}
 	}
 	
@@ -209,6 +213,11 @@ class MysqlAdapter extends PDO implements DBInterface {
 		$fieldNames = implode ( ',', array_keys ( $data ) );
 		$fieldValues = ':' . implode ( ', :', array_keys ( $data ) );
 		
+		/*
+		$sql = $db->prepare("INSERT INTO db_fruit (id, type, colour) VALUES (:id, :name, :color)");
+		$sql->execute(array('id' => $newId, 'name' => $name, 'color' => $color));
+		http://bit.ly/2sDDt25
+		*/
 		$stmt = self::$dbMysql->prepare ( "INSERT INTO $table ($fieldNames) VALUES ($fieldValues)" );
 		
 		foreach ( $data as $key => $value ) {
@@ -374,4 +383,57 @@ class MysqlAdapter extends PDO implements DBInterface {
 	public function truncate($table) {
 		return self::$dbMysql->exec ( "TRUNCATE TABLE $table" );
 	}
+	
+		
+	/**
+	orm logic test step 1
+	*/
+	 
+	public function where_test ($rowName,$ayrac,$value) {
+		$tableName=$this->tableName;
+		$q = "SELECT * FROM ".$tableName ." where ".$rowName.$ayrac.$value;
+		 return $this->fetch($q);
+	}
+	
+	/**
+	orm logic test step 2
+	*/
+	 
+	public function where ($rowName,$ayrac,$value) {
+		$where = ['row' =>$rowName,'ayrac' =>$ayrac,'value' =>$value];
+		$this->where=$where;
+		return $this;
+	}
+	
+  //public function update($table, $data, $where) {
+	
+  // Substract gallons of fuel from the tank as we ride the car.
+  public function update2( $data) 
+  {
+	 $table=$this->tableName;
+	 $where= $this->where;
+	 $new_data=array();
+	 	foreach ( $data as $key => $value ) {
+			$new_data['key']=$key;
+			$new_data['value']=$value;
+		}
+
+
+		/*
+	UPDATE Customers SET ContactName = 'Alfred Schmidt', City= 'Frankfurt' WHERE CustomerID = 1; //sql 
+	UPDATE `access_users`   	SET        `telephone` = :telephone  WHERE `user_id` = :user_id 
+		*/
+		$sql="UPDATE `$table` SET `".$new_data['key']."` = :".$new_data['key']." WHERE `".$where['row']."` ".$where['ayrac']." :".$where['row']." ";
+		$stmt = self::$dbMysql->prepare ( $sql );
+	
+			$stmt->bindValue(":".$new_data['key'], $new_data['value']);
+			$stmt->bindValue(":".$where['row'], $where['value']);
+		
+		$stmt->execute ();
+		
+	  return $this;
+
+
+  }
+	
 }
