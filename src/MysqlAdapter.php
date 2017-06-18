@@ -50,7 +50,7 @@ class MysqlAdapter extends PDO implements DBInterface {
 	
 	
 	    /**
-		multiple connection 
+	*	multiple connection 
      * Static method get
      *
      * @param array $group            
@@ -386,7 +386,7 @@ class MysqlAdapter extends PDO implements DBInterface {
 	
 		
 	/**
-	orm logic test step 1
+	*orm logic test step 1
 	*/
 	 
 	public function where_test ($rowName,$ayrac,$value) {
@@ -396,7 +396,7 @@ class MysqlAdapter extends PDO implements DBInterface {
 	}
 	
 	/**
-	orm logic test step 2
+	*orm logic test step 2
 	*/
 	 
 	public function where ($rowName,$ayrac,$value) {
