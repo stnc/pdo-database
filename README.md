@@ -100,7 +100,8 @@ return $db->delete ( $tableName, $where );
 $db->lastID();
 ```
 
-## 9. Orm ---where -update 
+## 9. Orm Mass Updates
+
 ```php
 $db->tableName=$tableName;
 $db->where('id', '=', 1)->update2(['username' =>'selman sedat']);
