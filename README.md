@@ -100,7 +100,7 @@ return $db->delete ( $tableName, $where );
 $db->lastID();
 ```
 
-## 9. Orm Mass Updates
+## 10. Orm Mass Updates
 
 ```php
 $db->tableName=$tableName;
