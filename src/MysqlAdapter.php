@@ -405,9 +405,9 @@ class MysqlAdapter extends PDO implements DBInterface {
 		return $this;
 	}
 	
-  //public function update($table, $data, $where) {
-	
-  // Substract gallons of fuel from the tank as we ride the car.
+/*
+*Chaining methods 
+*/
   public function update2( $data) 
   {
 	 $table=$this->tableName;
