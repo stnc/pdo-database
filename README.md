@@ -99,3 +99,9 @@ return $db->delete ( $tableName, $where );
 ```php
 $db->lastID();
 ```
+
+## 9. Orm ---where -update 
+```php
+$db->tableName=$tableName;
+$db->where('id', '=', 1)->update2(['username' =>'selman sedat']);
+```
