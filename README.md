@@ -1,15 +1,17 @@
 # pdo-database
-easy ,basic ,simple ORM <br>
+easy ,basic ,simple mysql provider <br>
 A super simple function that returns the full SQL query from your PDO statements<br>
 a PDO database service provider for mysql
 
+# Composer install 
+composer require stnc/pdo-database
 
 ## 1. Installing-Connections 
 ```php
 require_once 'vendor/autoload.php';
   define('DB_TYPE', 'mysql');
   define('DB_HOST', 'localhost');
-  define('DB_NAME', 'alem');
+  define('DB_NAME', 'wordpress');
   define('DB_USER', 'root');
   define('DB_PASS', '');
   ```
@@ -39,7 +41,7 @@ foreach ( $array_expression as $value ) {
 	echo '<br>';
 }
 ```
-## 3. Select single row
+## 4. Select single row
 ```php
 $tableName = 'wp_options';//wordpress 
 $q = "SELECT * FROM ".$tableName;
@@ -53,12 +55,12 @@ echo $array_expression ['option_name'];
 
 
 ```
-## 4.  Query 
+## 5.  Query 
 ```php
 $q = "ALTER TABLE users MODIFY COLUMN user_id  int(11) NOT NULL AUTO_INCREMENT FIRST";
 $this->query ( $q );
 ```
-## 5. insert data
+## 6. insert data
 ```php
 $data = array (
 		'name' => "john",
@@ -70,7 +72,7 @@ $data = array (
 
 $this->insert ( $tableName, $data );
 ```
-## 6. update metod
+## 7. update metod
 ```php
 $data = array (
 		'name' => "john",
@@ -83,16 +85,17 @@ $where = array (
 );
 $this-> update ( $tableName, $data, $where );
 ```
-## 7. Delete metod
+## 8. Delete metod
 ```php
 $where = array (
 		'user_id' => 1 
 );
-```
 
 return $db->delete ( $tableName, $where );
+```
 
-## 8. last id 
+
+## 9. last id 
 ```php
 $db->lastID();
 ```
