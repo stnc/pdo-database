@@ -1,7 +1,7 @@
 # pdo-database
 easy ,basic ,simple mysql provider <br>
 A super simple function that returns the full SQL query from your PDO statements<br>
-a PDO database service provider for mysql
+a PDO database service provider for mysql and portgreSQL
 
 # Composer install 
 composer require stnc/pdo-database
