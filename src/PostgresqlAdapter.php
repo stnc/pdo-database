@@ -103,11 +103,6 @@ class PostgresqlAdapter extends PDO implements DBInterface {
             
             $instance->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
             
-            /*
-             * benim eski mvc den
-             * self::$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-             * self::$db->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
-             */
             
             // Setting Database into $instances to avoid duplication
             self::$instances[$id] = $instance;
