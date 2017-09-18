@@ -58,7 +58,7 @@ echo $array_expression ['option_name'];
 ## 5.  Query 
 ```php
 $q = "ALTER TABLE users MODIFY COLUMN user_id  int(11) NOT NULL AUTO_INCREMENT FIRST";
-$this->query ( $q );
+$db->query ( $q );
 ```
 ## 6. insert data
 ```php
@@ -70,7 +70,7 @@ $data = array (
 );
 
 
-$this->insert ( $tableName, $data );
+$db->insert ( $tableName, $data );
 ```
 ## 7. update metod
 ```php
@@ -83,7 +83,7 @@ $data = array (
 $where = array (
 		'user_id' => 1 
 );
-$this-> update ( $tableName, $data, $where );
+$db-> update ( $tableName, $data, $where );
 ```
 ## 8. Delete metod
 ```php
