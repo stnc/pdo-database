@@ -1,38 +1,32 @@
 <?php
+
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
 require_once 'vendor/autoload.php';
 
-define('DB_TYPE', 'mysql');
-
-  define('DB_HOST', 'localhost');
-  define('DB_NAME', 'postgres');
-  define('DB_USER', 'postgres');
-  define('DB_PASS', '123456');
-  define('DB_PORT', '5432');
 /* //use 1 
-use Stnc\Db\PostgresqlAdapter ;
-$db = new PostgresqlAdapter();
+use Stnc\Db\SQLiteAdapter ;
+$db = new SQLiteAdapter();
 */
 
 /* //use 2
-use Stnc\Db\PostgresqlAdapter as dbs;
+use Stnc\Db\SQLiteAdapter as dbs;
 $db = new dbs();
 */
 
 
 //use 3
-$db = new Stnc\Db\PostgresqlAdapter();
+$db = new Stnc\Db\SQLiteAdapter("sqllite_example.db");
 
 
-$tableName = 'users';
+$tableName = 'CRM_IDENTITYLIST';
 // multiple rows
-$q = "SELECT * FROM ".$tableName;
+echo $q = "SELECT * FROM ".$tableName;
 $array_expression = $db->fetchAll ( $q );
 foreach ( $array_expression as $value ) {
-	echo  $value ['username'];
+	echo  $value ['Scope'];
 	echo '<br>';
 }
 
@@ -41,7 +35,7 @@ $q = "SELECT * FROM ".$tableName ." where id=1";
 $array_expression = $db->fetch ( $q );
 
 
-	echo $value ['username'];
+	echo $value ['Scope'];
 
 
 
@@ -56,41 +50,39 @@ $q = "ALTER TABLE users MODIFY COLUMN id  int(11) NOT NULL AUTO_INCREMENT FIRST"
 
 // insert data
 $data = array (
-		'first_name' => "john",
-		'last_name' => "carter",
-		'username' => "rob",
-		'password' => "12345",
-
+		'ID' => 44555,
+		'LastNumber' => 44555,
+		'Scope' => "carter",
+		'Subsidiary' => "carter",
 );
 //print_r($data );
  $db->insert ( $tableName, $data );
-die;
+
 // update metod
 
 $data = array (
-		'first_name' => "johnx",
-		'last_name' => "carter",
+    'LastNumber' => 656656,
+    'Scope' => "carter2",
+    'Subsidiary' => "carter4",
 );
-
 $where = array (
-		'id' => 1 
+		'ID' => 1
 );
 
  $db-> update ( $tableName, $data, $where );
 
 $where = array (
-		'id' => 5
+		'ID' => 5
 );
 $db->delete ( $tableName, $where );
 
 
 //last id 
 $db->lastID();
-
+/*
 ///NEW MTEOD //Chaining methods where update //orm step 2
-$db->where('id', '=', 1)->update2(['username' =>'selman sedat']);
-
+$db->where('ID', '=', 1)->update2(['LastNumber' =>656656]);
 //orm step 1
 $db->tableName=$tableName;
-$array_expression = $db->where_test ( 'id','=','1' );
-
+$array_expression = $db->where_test ( 'ID','=','1' );
+*/
