@@ -291,6 +291,7 @@ class SQLiteAdapter extends PDO implements DBInterface {
 	}
 	
 	/**
+     * alias fetch()
 	 * one result
 	 * tek sonuc verir
 	 *
