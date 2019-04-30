@@ -11,12 +11,12 @@ define('DB_TYPE', 'mysql');
 
 
 /* //use 1 
-use stnc\db\MysqlAdapter ;
+use Stnc\Db\MysqlAdapter ;
 $db = new MysqlAdapter();
 */
 
 /* //use 2
-use stnc\db\MysqlAdapter as dbs;
+use Stnc\Db\MysqlAdapter as dbs;
 $db = new dbs();
 */
 

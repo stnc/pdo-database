@@ -1,5 +1,5 @@
 <?php
-namespace stnc\db;
+namespace Stnc\Db;
 /**
  * Stnc easy framework 
  *

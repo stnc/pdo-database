@@ -1,4 +1,6 @@
 <?php
+
+
 require_once 'vendor/autoload.php';
 
 define('DB_TYPE', 'mysql');
@@ -9,18 +11,18 @@ define('DB_TYPE', 'mysql');
   define('DB_PASS', '123456');
   define('DB_PORT', '5432');
 /* //use 1 
-use stnc\db\PostgresqlAdapter ;
+use Stnc\Db\PostgresqlAdapter ;
 $db = new PostgresqlAdapter();
 */
 
 /* //use 2
-use stnc\db\PostgresqlAdapter as dbs;
+use Stnc\Db\PostgresqlAdapter as dbs;
 $db = new dbs();
 */
 
 
 //use 3
-$db = new stnc\db\PostgresqlAdapter();
+$db = new Stnc\Db\PostgresqlAdapter();
 
 
 $tableName = 'users';
