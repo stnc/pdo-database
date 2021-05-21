@@ -18,18 +18,18 @@ require_once 'vendor/autoload.php';
 ## 2. Connections
 ```php
 /* //use 1 
-use stnc\db\MysqlAdapter ;
+use Stnc\Db\MysqlAdapter ;
 $db = new MysqlAdapter();
 */
 
 /* //use 2
-use stnc\db\MysqlAdapter as dbs;
+use Stnc\Db\MysqlAdapter as dbs;
 $db = new dbs();
 */
 
 
 //use 3
-$db = new stnc\db\MysqlAdapter();
+$db = new Stnc\Db\MysqlAdapter();
 $tableName = 'users';
 ```
 ## 3. Select multiple rows
